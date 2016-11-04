@@ -1,0 +1,53 @@
+#
+# VMD script to draw vectors
+#
+menu main on
+display projection orthographic
+
+#
+# VMD functions to draw a vector
+#
+proc vmd_draw_arrow {mol start end} {
+  set length [veclength [vecsub $end $start]]
+  set conelen [expr max(0.4,0.2*$length) ]
+  set scale [expr max(0.5,(1.0-$conelen/$length))]
+
+  set middle [vecadd $start [vecscale $scale [vecsub $end $start]]]
+  graphics $mol cylinder $start $middle radius 0.05
+  puts [list cone $middle $end radius 0.15]
+  graphics $mol cone $middle $end radius 0.15
+}
+
+proc vmd_draw_vector { mol pos val } {
+    set end   [ vecadd $pos [ vecscale +1 $val ] ]
+    vmd_draw_arrow $mol $pos $end
+}
+
+
+mol new vis_nwchem_td.xyz type xyz
+
+
+#
+# Reference Frame chosen for the Analysis
+#
+# X, Y, Z axes
+graphics 0 color blue; vmd_draw_vector 0 {  0.0000   0.0000   0.0000} {  0.6070   0.7484  -0.2675}
+graphics 0 color blue; vmd_draw_vector 0 {  0.0000   0.0000   0.0000} { -0.3633  -0.0381  -0.9309}
+graphics 0 color blue; vmd_draw_vector 0 {  0.0000   0.0000   0.0000} { -0.7068   0.6622   0.2488}
+
+
+# Transition Electric Dipole Moment of Excited State 1
+# graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0000   0.0000} {  0.0001   0.0001   0.0001}
+
+# Transition Electric Dipole Moment of Excited State 2
+graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0000   0.0000} {  1.4569   0.5951   2.4767}
+
+# Transition Electric Dipole Moment of Excited State 3
+graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0000   0.0000} {  1.5474   2.0307  -1.3900}
+
+# # Transition Electric Dipole Moment of Excited State 4
+# graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0000   0.0000} {  0.0000   0.0000  -0.0000}
+
+# # Transition Electric Dipole Moment of Excited State 5
+# graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0000   0.0000} { -0.0000  -0.0000   0.0000}
+

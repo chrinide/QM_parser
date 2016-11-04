@@ -1,0 +1,74 @@
+#
+# VMD script to draw vectors
+#
+menu main on
+display projection orthographic
+
+#
+# VMD functions to draw a vector
+#
+proc vmd_draw_arrow {mol start end} {
+  set length [veclength [vecsub $end $start]]
+  set conelen [expr max(0.4,0.2*$length) ]
+  set scale [expr max(0.5,(1.0-$conelen/$length))]
+
+  set middle [vecadd $start [vecscale $scale [vecsub $end $start]]]
+  graphics $mol cylinder $start $middle radius 0.05
+  puts [list cone $middle $end radius 0.15]
+  graphics $mol cone $middle $end radius 0.15
+}
+
+proc vmd_draw_vector { mol pos val } {
+    set end   [ vecadd $pos [ vecscale +1 $val ] ]
+    vmd_draw_arrow $mol $pos $end
+}
+
+
+mol new vis_g09_td.xyz type xyz
+
+
+#
+# Reference Frame chosen for the Analysis
+#
+# X, Y, Z axes
+graphics 0 color blue; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.9997   0.0000  -0.0240}
+graphics 0 color blue; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.0000   1.0000   0.0000}
+graphics 0 color blue; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.0240  -0.0000   0.9997}
+
+
+# Transition Electric Dipole Moment of Excited State 1
+graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  8.7381   0.0000   0.0179}
+
+# Transition Magnetic Dipole Moment of Excited State 1
+graphics 0 color green; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.1046  -0.0000  -0.0976}
+
+# # Transition Electric Dipole Moment of Excited State 2
+# graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.0001  -0.0260   0.0000}
+
+# # Transition Magnetic Dipole Moment of Excited State 2
+# graphics 0 color green; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.0000   0.2844   0.0000}
+
+# # Transition Electric Dipole Moment of Excited State 3
+# graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  2.2160  -0.0000   0.0595}
+
+# # Transition Magnetic Dipole Moment of Excited State 3
+# graphics 0 color green; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.0365   0.0000  -0.2274}
+
+# # Transition Electric Dipole Moment of Excited State 4
+# graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.0000   0.0397   0.0000}
+
+# # Transition Magnetic Dipole Moment of Excited State 4
+# graphics 0 color green; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.0000  -0.5212   0.0000}
+
+# # Transition Electric Dipole Moment of Excited State 5
+# graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  1.1703   0.0000   0.0901}
+
+# # Transition Magnetic Dipole Moment of Excited State 5
+# graphics 0 color green; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.0232  -0.0000  -0.3725}
+
+# # Transition Electric Dipole Moment of Excited State 6
+# graphics 0 color red; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.0000   0.0001   0.0000}
+
+# # Transition Magnetic Dipole Moment of Excited State 6
+# graphics 0 color green; vmd_draw_vector 0 {  0.0000   0.0018  -0.0000} {  0.0000  -0.0035   0.0000}
+

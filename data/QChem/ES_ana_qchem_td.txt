@@ -1,0 +1,25 @@
+#
+# Analysis of Excited State Transition Dipole Moments Orientation
+#
+# Orientation defined by atoms:
+# A : 2
+# B : 4
+# C : 3
+#
+# X axis : A -> B
+# Y axis : x -> C
+#
+# Theta : angle between Transition Dipole Moment and X axis in the XY plane
+# Phi : angle between Transition Dipole Moment and XY plane
+#
+
+
+#
+# Transition Electric Dipole Moments
+#
+#  Energy (eV)  Norm (a.u.)  Theta (deg)    Phi (deg)
+#
+    1.794600     2.999635        45.24         0.11
+    2.372800     1.462602       -34.22         1.06
+    3.458400     0.142567       -23.89       -13.58
+    3.545400     0.250895       -44.15         3.79
