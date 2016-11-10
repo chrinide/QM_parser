@@ -296,7 +296,7 @@ class Chrom:
                   "#\n"
                   "# Theta : angle between Transition Dipole Moment and X axis in the XY plane\n"
                   "# Phi : angle between Transition Dipole Moment and XY plane\n"
-                  "#\n\n\n")
+                  "#\n#\n#\n")
 
         intest = tuple(["Energy (eV)", "Norm (a.u.)", "Theta (deg)", "Phi (deg)"])
         with open("%s.txt" % filename, 'w') as f:
@@ -317,7 +317,7 @@ class Chrom:
 
             if mag is not None:
 
-                f.write("\n")
+                f.write("#\n")
                 f.write("#\n")
                 f.write("# Transition Magnetic Dipole Moments\n")
                 f.write("#\n")
